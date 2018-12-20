@@ -27,7 +27,7 @@ var Paddle = function() {
         this.x += this.speed
     }
     o.collide = function(ball) {
-        if (o.y < ball.y) {
+        if (o.y < ball.y + ball.image.height) {
             if (o.x < ball.x ) {
                 if (o.x + image.width > ball.x) {
                     ball.speedY *= -1
@@ -52,10 +52,10 @@ var Ball = function() {
     o.move = function(canvas) {
         if (o.fired) {
             //
-            if (o.x < 0 || o.x > canvas.width) {
+            if (o.x <= 0 || o.x >= canvas.width) {
                 o.speedX *= -1
             }
-            if (o.y < 0 || o.y > canvas.height) {
+            if (o.y <= 0 || o.y >= canvas.height) {
                 o.speedY *= -1
             }
             o.x += o.speedX
