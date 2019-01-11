@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打砖块游戏</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        h1 {
+            width: 500px;
+            text-align: center;
+            margin: 20px auto;
+
+        }
+
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript-打砖块</h1>
+    <canvas id="game-canvas" width="400" height="300"></canvas>
+    <hr>
+    <div style="width:300px;margin: 20px auto;text-align: center;">
+        <h2>控制fps</h2>
+        <input id="id-range" type="range" value="1">
+        <p>帮助：a左，d右，f发射，p暂停</p>
+    </div>
+
+    <!-- 辅助函数 -->
+    <script src="js/assist.js"></script>
+    <script src="js/paddle.js"></script>
+    <script src="js/ball.js"></script>
+    <script src="js/block.js"></script>
+    <!-- canvas控制 -->
+    <script src="js/game.js"></script>
+    <!-- 关卡 -->
+    <script src="js/level.js"></script>
+    <!-- 入口 -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
