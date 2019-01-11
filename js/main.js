@@ -10,11 +10,14 @@ var loadLevel = function(n) {
     return l
 }
 
+// ***** 一些全局属性 *****
+// - 控制暂停
 window.paused = false
-// 载入指定关卡
+// - 载入指定关卡
 window.blocks = loadLevel(1)
-// 帧数
+// - 帧数
 window.fps = 60
+
 var debug = function(boolean) {
     // 暂停小球
     bindEvent(window, 'keydown', function(event) {
@@ -28,7 +31,11 @@ var debug = function(boolean) {
 
     var range = e('#id-range')
     bindEvent(range, 'input', function(event) {
-        fps = event.target.value
+        if (event.target.value < 1) {
+            fps = 1
+        } else {
+            fps = event.target.value
+        }
     })
 }
 var __main = function() {
@@ -42,11 +49,13 @@ var __main = function() {
     // 小球
     var ball = Ball()
 
-    // 处理事件
+    // 按键事件
     game.registerAction('a', function() {
+        // 挡板左移
         paddle.moveLeft()
     })
     game.registerAction('d', function() {
+        // 挡板有移
         paddle.moveRight()
     })
     game.registerAction('f', function() {
@@ -75,6 +84,7 @@ var __main = function() {
     game.draw = function() {
         game.drawImage(paddle)
         game.drawImage(ball)
+        // 批量绘制砖块
         for (var i = 0; i < blocks.length; i++) {
             var b = blocks[i]
             if (b.alive) {
