@@ -1,20 +1,17 @@
-var Paddle = function() {
-    var image = imageFromPath('img/paddle.png')
-    var o = {
-        image: image,
-        x: 150,
-        y: 250,
-        speed: 10,
-    }
+var Paddle = function(game) {
+    var o = game.imageByName('paddle')
+    o.x = 150
+    o.y = 250
+    o.speed = 10
     o.moveLeft = function() {
-        if (this.x <= 0) {
+        if(this.x <= 0) {
             this.x = 0
             return
         }
         this.x -= this.speed
     }
     o.moveRight = function() {
-        if (this.x >= 400 - this.image.width) {
+        if(this.x >= 400 - this.image.width) {
             this.x = 400 - this.image.width
             return
         }
@@ -23,7 +20,7 @@ var Paddle = function() {
     // 碰撞检测
     o.collide = function(ball) {
 
-        if (ball.rectCollisionDetection(o)) {
+        if(ball.rectCollisionDetection(o)) {
             ball.speedY *= -1
         }
     }
