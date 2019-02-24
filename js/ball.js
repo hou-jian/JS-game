@@ -31,21 +31,16 @@ var Ball = function(game) {
     //     return false
     // }
     o.rectCollisionDetection = function(rect) {
-        var half1Width = o.image.width / 2,
-            half1Height = o.image.height / 2,
-            half2Width = rect.image.width / 2,
-            half2Height = rect.image.height / 2,
-            cen1 = {
-                x: o.x + half1Width,
-                y: o.y + half1Height
-            },
-            cen2 = {
-                x: rect.x + half2Width,
-                y: rect.y + half2Height
-            }
-
-        return Math.abs(cen2.x - cen1.x) <= half1Width + half2Width && Math.abs(cen2.y - cen1.y) <= half1Height + half2Height;
+        return o.x < rect.x + rect.w &&
+            o.x + o.w > rect.x &&
+            o.y < rect.y + rect.h &&
+            o.h + o.y > rect.y
     }
-
+    // 检查是否点击到小球
+    o.hasPoint = function(x, y) {
+        var xIn = x >= o.x && x <= o.x + o.w
+        var yIn = y >= o.y && y <= o.y + o.h
+        return xIn && yIn
+    }
     return o
 }
