@@ -88,6 +88,9 @@ var Game = function(images, runCallback) {
     }
     g.runWithScene = function(scene) {
         g.scene = scene
+        setTimeout(function() {
+            g.runloop()
+        }, 1000 / window.fps)
     }
 
     g.replaceScene = function(scene) {
@@ -95,9 +98,7 @@ var Game = function(images, runCallback) {
     }
     g.run = function() {
         runCallback(g)
-        setTimeout(function() {
-            g.runloop()
-        }, 1000 / window.fps)
+
     }
 
     return g

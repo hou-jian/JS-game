@@ -49,7 +49,7 @@ var Scene = function(game) {
         }
         // 小球移动，与边界相撞则反弹
         ball.move(game.canvas)
-        
+
         // 判断游戏结束
         if(ball.y > paddle.y) {
             var end = SceneEnd(game)
@@ -68,6 +68,7 @@ var Scene = function(game) {
             }
         }
     }
+
     // 调试用
     s.debug = function(boolean) {
         if(!boolean) {
@@ -119,7 +120,6 @@ var Scene = function(game) {
             ballStatus = false
         })
     }
-
 
     return s
 }
