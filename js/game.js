@@ -1,8 +1,9 @@
 var Game = function(images, runCallback) {
     var g = {
+        scene: null,
         actions: {},
         keydowns: {},
-        images: {}
+        images: {},
     }
     // - 获取元素
     var canvas = e('#game-canvas')
@@ -16,6 +17,14 @@ var Game = function(images, runCallback) {
     bindEvent(window, 'keyup', function(event) {
         g.keydowns[event.key] = false
     })
+           
+    g.updata = function() {
+        g.scene.updata()
+    }
+   
+    g.draw = function() {
+        g.scene.draw()
+    }
 
     // - 绘制Image
     g.drawImage = function(img) {
@@ -76,6 +85,13 @@ var Game = function(images, runCallback) {
             image: img,
         }
         return image
+    }
+    g.runWithScene = function(scene) {
+        g.scene = scene
+    }
+
+    g.replaceScene = function(scene) {
+        g.scene = scene
     }
     g.run = function() {
         runCallback(g)
