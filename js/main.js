@@ -25,8 +25,8 @@ var __main = function() {
         block: 'img/block.png',
         paddle: 'img/paddle.png',
     }
-
-    Game(images, function(g) {
+    
+    new Game(images, function(g) {
         var s = Scene(g)
         // 绘制场景
         g.runWithScene(s)
