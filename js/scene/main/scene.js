@@ -52,7 +52,7 @@ var Scene = function(game) {
 
         // 判断游戏结束
         if(ball.y > paddle.y) {
-            var end = SceneEnd(game)
+            var end = new SceneEnd(game)
             game.replaceScene(end)
         }
         // 球和挡板相撞则反弹
