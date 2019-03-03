@@ -8,6 +8,7 @@ class Game {
         this.keydowns = {}
         this.canvas = e('#game-canvas')
         this.context = this.canvas.getContext('2d')
+        
         // - 按键，按下移动true，抬起停止false
         bindEvent(window, 'keydown', (event) => {
             this.keydowns[event.key] = true
@@ -28,8 +29,8 @@ class Game {
 
     // - 绘制Image
     drawImage(img) {
-
-        this.context.drawImage(img.image, img.x, img.y)
+        // log(img)
+        this.context.drawImage(img.texture, img.x, img.y, img.w, img.h)
     }
 
     // - 让传入的按键key值，指向回调函数。并保存在actions对象里
@@ -39,7 +40,6 @@ class Game {
     }
 
     init() {
-
         // - 预先载入所有图片
         var loads = []
         var names = Object.keys(this.images)
@@ -76,21 +76,22 @@ class Game {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
         // - 更新数据
         this.update(this.canvas)
-        // - 绘制图片(函数在main.js里)
+        // - 绘制图片
         this.draw()
         // - 递归调用
         setTimeout(() => {
             this.runloop()
         }, 1000 / window.fps)
     }
-    imageByName(name) {
+    textureByName(name) {
+        // log('images', this.images)
         var img = this.images[name]
-        var image = {
-            w: img.width,
-            h: img.height,
-            image: img,
-        }
-        return image
+        // var image = {
+        //     w: img.width,
+        //     h: img.height,
+        //     image: img,
+        // }
+        return img
     }
     runWithScene(scene) {
         this.scene = scene
