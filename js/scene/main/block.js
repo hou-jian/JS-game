@@ -1,4 +1,3 @@
-
 var Block = function(x, y, l, game) {
     var o = game.imageByName('block')
     
