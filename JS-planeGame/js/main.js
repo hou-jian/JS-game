@@ -9,10 +9,13 @@ var __main = function() {
 
     // 需要载入的图片名称
     var images = {
-        bg: 'img/background.png',
-        bullet: 'img/bullet1.png',
-        hero: 'img/hero.png',
-        enemy: 'img/enemy1.png',
+        bg1: 'assets/game/bg1.png',
+        player: 'assets/player/player.png',
+        enemy1: 'assets/enemy/enemy1.png',
+        enemy2: 'assets/enemy/enemy2.png',
+        enemy3: 'assets/enemy/enemy3.png',
+        enemy4: 'assets/enemy/enemy4.png',
+        enemy5: 'assets/enemy/enemy5.png',
         
     }
     
@@ -20,11 +23,22 @@ var __main = function() {
     // 保证资源加载完毕后，再开始运行
     new Game(images, function(g) {
         var s = new Scene(g)
-        // 绘制场景
+        // 绘制场景，入口
         g.runWithScene(s)
-        // debug(暂停、拖拽...)
-        s.debug(true)
+        debugOptions()
     })
+    
+    // 调试参数
+    var debugOptions = function() {
+        var range = e('#id-range')
+        bindEvent(range, 'input', function(event) {
+            if(event.target.value < 1) {
+                fps = 1
+            } else {
+                fps = event.target.value
+            }
+        })
+    }
 }
 
 __main()

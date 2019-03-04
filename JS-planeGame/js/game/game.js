@@ -18,7 +18,28 @@ class Game {
         })
         this.init()
     }
+    // game入口！
+    init() {
+        // - 预先载入所有图片
+        var loads = []
+        var names = Object.keys(this.images)
+        for(var i = 0; i < names.length; i++) {
+            let name = names[i]
+            var path = this.images[name]
+            let img = new Image()
+            img.src = path
+            img.onload = () => {
+                loads.push(1)
+                this.images[name] = img
 
+                if(loads.length == names.length) {
+                    // 资源载入完毕，开始执行
+                    this.run()
+                }
+            }
+        }
+    }
+    
     update() {
         this.scene.update()
     }
@@ -39,28 +60,9 @@ class Game {
         this.actions[key] = callback
     }
 
-    init() {
-        // - 预先载入所有图片
-        var loads = []
-        var names = Object.keys(this.images)
-        for(var i = 0; i < names.length; i++) {
-            let name = names[i]
-            var path = this.images[name]
-            let img = new Image()
-            img.src = path
-            img.onload = () => {
-                loads.push(1)
-                this.images[name] = img
 
-                if(loads.length == names.length) {
-                    this.run()
-                }
-            }
-        }
-    }
-    // - 更新页面
+    // - 每fps/1000擦除重绘canvas，以实现动画效果。
     runloop() {
-
         // - 批量处理按下某个键，进行某操作
         var actions = Object.keys(this.actions)
         for(var i = 0; i < actions.length; i++) {
@@ -83,9 +85,10 @@ class Game {
             this.runloop()
         }, 1000 / window.fps)
     }
+    // 根据名字返回图片
     textureByName(name) {
-        // log('images', this.images)
         var img = this.images[name]
+        // log('1', img)
         // var image = {
         //     w: img.width,
         //     h: img.height,
@@ -93,16 +96,18 @@ class Game {
         // }
         return img
     }
+    // 获取到场景相关资源开始运行
     runWithScene(scene) {
         this.scene = scene
         setTimeout(() => {
             this.runloop()
         }, 1000 / window.fps)
     }
-
+    // 用来替换场景对象，以实现不同场景间的切换
     replaceScene(scene) {
         this.scene = scene
     }
+    // 资源载入完毕，执行回调
     run() {
         this.runCallback(this)
     }

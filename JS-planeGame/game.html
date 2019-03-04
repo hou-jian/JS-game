@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>打砖块游戏</title>
+    <title>打飞机</title>
     <style>
         * {
             padding: 0;
@@ -28,7 +28,7 @@
 
 <body>
     <h1>JavaScript-打飞机</h1>
-    <canvas id="game-canvas" width="400" height="700"></canvas>
+    <canvas id="game-canvas" width="450" height="800"></canvas>
     <hr>
     <div style="width:300px;margin: 20px auto;text-align: center;">
         <h2>控制fps</h2>
@@ -46,6 +46,9 @@
     
     <!-- 场景相关文件 -->
     <script src="js/scene/main/scene.js"></script>
+    <script src="js/scene/main/player.js"></script>
+    <script src="js/scene/main/bg.js"></script>
+    <script src="js/scene/main/enemy.js"></script>
     <!-- 结束/标题场景 -->
     <script src="js/scene/end/scene_end.js"></script>
     <script src="js/scene/title/scene_title.js"></script>
