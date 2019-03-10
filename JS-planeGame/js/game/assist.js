@@ -5,6 +5,7 @@ var e = function(selector) {
 var es = function(selector) {
     return document.querySelectorAll(selector)
 }
+
 var bindEvent = function(element, event, callback) {
     element.addEventListener(event, callback)
 }

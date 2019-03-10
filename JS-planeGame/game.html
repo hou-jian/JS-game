@@ -31,9 +31,52 @@
     <canvas id="game-canvas" width="450" height="800"></canvas>
     <hr>
     <div style="width:300px;margin: 20px auto;text-align: center;">
-        <h2>控制fps</h2>
-        <input id="id-range" type="range" value="1">
-        <p>帮助：wasd控制移动，p暂停</p>
+
+        <div>
+            <label>
+                <input
+                    class="auto-slider"
+                    type="range"
+                    value="1"
+                    data-value="config.fps"
+                >
+                fps:<span class="gua-label"></span>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input
+                    class="auto-slider"
+                    type="range"
+                    value="1"
+                    data-value="config.player_speed"
+                >
+                飞机速度：<span class="gua-label"></span>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input
+                    class="auto-slider"
+                    type="range"
+                    value="1"
+                    data-value="config.missile_speed"
+                >
+                子弹速度：<span class="gua-label"></span>
+            </label>
+        </div>
+        <div>
+                <label>
+                    <input
+                        class="auto-slider"
+                        type="range"
+                        value="1"
+                        data-value="config.player_cooldown"
+                    >
+                    子弹冷却：<span class="gua-label"></span>
+                </label>
+            </div>
+        <p>帮助：上方滑条调整参数，wasd控制移动，j发射子弹</p>
     </div>
 
     <!-- 辅助函数 -->
@@ -43,11 +86,12 @@
     <script src="js/game/game.js"></script>
     <script src="js/game/gua_scene.js"></script>
     <script src="js/game/gua_image.js"></script>
-    
+
     <!-- 场景相关文件 -->
     <script src="js/scene/main/scene.js"></script>
     <script src="js/scene/main/player.js"></script>
     <script src="js/scene/main/bg.js"></script>
+    <script src="js/scene/main/yun.js"></script>
     <script src="js/scene/main/enemy.js"></script>
     <!-- 结束/标题场景 -->
     <script src="js/scene/end/scene_end.js"></script>

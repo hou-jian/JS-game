@@ -1,12 +1,14 @@
 class Enemy extends GuaImage {
-    constructor(game) { 
+    constructor(game) {
+        // 随机敌机种类 
         var n = rnd(1, 6)
         super(game, 'enemy' + n)
         this.setup()
     }
     setup() {
+        
         this.x = rnd(0, this.canvasW - 50)
-        this.y = 0
+        this.y = -30
         this.speed = rnd(1, 5)
     }
     update() {

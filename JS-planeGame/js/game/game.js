@@ -83,7 +83,7 @@ class Game {
         // - 递归调用
         setTimeout(() => {
             this.runloop()
-        }, 1000 / window.fps)
+        }, 1000 / config.fps)
     }
     // 根据名字返回图片
     textureByName(name) {
@@ -101,7 +101,7 @@ class Game {
         this.scene = scene
         setTimeout(() => {
             this.runloop()
-        }, 1000 / window.fps)
+        }, 1000 / config.fps)
     }
     // 用来替换场景对象，以实现不同场景间的切换
     replaceScene(scene) {
