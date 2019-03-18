@@ -23,11 +23,13 @@ var __main = function() {
         yun3: 'assets/yun/Yun_3.png',
         yun4: 'assets/yun/Yun_4.png',
         missile1: 'assets/missile/missile1.png',
+        particle: 'assets/game/particle.png',
     }
 
     // 通过回调函数的方式,保证资源加载完毕后，再开始运行
     new Game(images, function(g) {
-        var s = new Scene(g)
+        // var s = new Scene(g)
+        var s = new SceneTitle(g)
         // 绘制场景，入口
         g.runWithScene(s)
         debugOptions()

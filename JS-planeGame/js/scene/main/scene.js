@@ -6,7 +6,7 @@ class Scene extends GuaScene {
     setup() {
         // 添加背景
         this.bg = new Bg(this.game)
-        // addElement在父类,用于自动添加img等其他操作
+        // 该方法在GuaScene父类里
         this.addElement(this.bg)
 
         // 添加云

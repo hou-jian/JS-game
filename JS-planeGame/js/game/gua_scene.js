@@ -1,26 +1,36 @@
+// 用来批量处理[飞机、云、文字...]
 class GuaScene {
     constructor(game) {
         this.game = game
         this.elements = []
     }
-    addElement(img) {
-        img.scene = this
-        // 添加图片到数组中
-        this.elements.push(img)
+    addElement(thing) {
+        // 这个scene属性是game类所需的
+        thing.scene = this
+        this.elements.push(thing)
     }
     draw() {
-        // 批量绘制到页面
-        for (let i = 0; i < this.elements.length; i++) {
-            var e = this.elements[i]
-            // drawImage是game类的方法,根据参数绘制
-            this.game.drawImage(e)
+        // 批量绘制到页面(绘制啥由自身决定)
+        for(var e of this.elements) {
+            e.draw()
         }
+    }
+    delParticleSystem() {
+        this.elements.forEach((e, index) => {
+            // 爆炸持续时间结束，删除它
+            if(e.duration <= 0) {
+                this.elements.splice(index, 1)
+            }
+        })
     }
     update() {
-        // 批量更新数据
-        for (let i = 0; i < this.elements.length; i++) {
-            var e = this.elements[i]
+        
+        // 批量更新数据(更新的数据由自身决定)
+        for(var e of this.elements) {
             e.update(this.game)
         }
+        // 持续帧数结束后，自动删掉飞机爆炸颗粒
+        this.delParticleSystem()
     }
+
 }

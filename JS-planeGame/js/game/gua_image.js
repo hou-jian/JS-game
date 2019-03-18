@@ -12,7 +12,8 @@ class GuaImage {
         this.h = this.texture.height / scale
     }
     draw() {
-
+        // game类中的方法，用于绘制图片
+        this.game.drawImage(this)
     }
 
     update() {
