@@ -23,7 +23,8 @@ var __main = function() {
         yun3: 'assets/yun/Yun_3.png',
         yun4: 'assets/yun/Yun_4.png',
         missile1: 'assets/missile/missile1.png',
-        particle: 'assets/game/particle.png',
+        particle: 'assets/game/particle.png', //爆炸颗粒
+        
     }
 
     // 通过回调函数的方式,保证资源加载完毕后，再开始运行
