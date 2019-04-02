@@ -11,10 +11,10 @@ class Game {
         
         // - 按键，按下移动true，抬起停止false
         bindEvent(window, 'keydown', (event) => {
-            this.keydowns[event.key] = true
+            this.keydowns[event.key] = 'down'
         })
         bindEvent(window, 'keyup', (event) => {
-            this.keydowns[event.key] = false
+            this.keydowns[event.key] = 'up'
         })
         this.init()
     }
@@ -68,10 +68,14 @@ class Game {
         for(var i = 0; i < actions.length; i++) {
             // 得到单个key值
             var key = actions[i]
-            // 检查状态，keydowns按下时为true，抬起false
-            if(this.keydowns[key]) {
+            var status = this.keydowns[key]
+            // log('status', status)
+            if(status == 'down') {
                 // 调用key所对应的函数
-                this.actions[key]()
+                this.actions[key]('down')
+            } else if(status == 'up') {
+                this.actions[key]('up')
+                this.keydowns[key] = null
             }
         }
         // - 清空画布

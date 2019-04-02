@@ -4,8 +4,20 @@ class SceneTitle extends GuaScene {
         // 绘制标签
         var label = new GuaLabel(game, '开始页面')
         this.addElement(label)
+
+        var s = new GuaAnimation(game)
+        // s.w = s.w / 3  
+        // s.h = s.h / 3
+        this.addElement(s)
+
+        this.setupInputs(s)
     }
-    update() {
-        super.update()
+    setupInputs(s) {
+        this.game.registerAction('a', (keyStatus) => {
+            s.move(-3, keyStatus)
+        })
+        this.game.registerAction('d', (keyStatus) => {
+            s.move(3, keyStatus)
+        })
     }
 }
