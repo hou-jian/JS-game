@@ -7,6 +7,7 @@ class Game {
         this.actions = {}
         this.keydowns = {}
         this.canvas = e('#game-canvas')
+
         this.context = this.canvas.getContext('2d')
         
         // - 按键，按下移动true，抬起停止false
@@ -92,15 +93,9 @@ class Game {
     // 根据名字返回图片
     textureByName(name) {
         var img = this.images[name]
-        // log('1', img)
-        // var image = {
-        //     w: img.width,
-        //     h: img.height,
-        //     image: img,
-        // }
         return img
     }
-    // 获取到场景相关资源开始运行
+    // 获取场景，并执行
     runWithScene(scene) {
         this.scene = scene
         setTimeout(() => {

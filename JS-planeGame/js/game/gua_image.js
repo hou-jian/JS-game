@@ -7,10 +7,11 @@ class GuaImage {
         this.canvasW = game.canvas.width
         this.canvasH = game.canvas.height
         // 对图片进行缩小
-        var scale = 720 / this.canvasW
-        this.w = this.texture.width / scale
-        this.h = this.texture.height / scale
+        this.scale = 720 / this.canvasW
+        this.w = this.texture.width / this.scale
+        this.h = this.texture.height / this.scale
     }
+
     draw() {
         // game类中的方法，用于绘制图片
         this.game.drawImage(this)

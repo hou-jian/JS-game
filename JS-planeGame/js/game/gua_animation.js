@@ -9,6 +9,7 @@ class GuaAnimation {
             idle: [],
             run: []
         }
+        // 默认加载的动画图片名
         this.animationName = 'idle'
 
         for(let i = 0; i < 16; i++) {
@@ -25,6 +26,8 @@ class GuaAnimation {
         this.w = this.texture.width / 3
         this.h = this.texture.height / 3
 
+        this.flipX = false //控制水平翻转
+
     }
     update() {
         // log('animations', this.texture)
@@ -35,7 +38,7 @@ class GuaAnimation {
             this.index++
 
             this.texture = this.animations[this.animationName][this.index]
-           
+
 
             this.w = this.texture.width / 3
             this.h = this.texture.height / 3
@@ -43,9 +46,27 @@ class GuaAnimation {
         }
     }
     draw() {
-        this.game.drawImage(this)
+        var context = this.game.context
+        // 人物向左走，水平翻转
+        if(this.flipX) {
+            
+            context.save()            
+            var x = this.x + this.w / 2
+            context.translate(x, 0)
+            context.scale(-1, 1)
+            context.translate(-x, 0)
+            context.drawImage(this.texture, this.x, this.y, this.w, this.h)
+            
+            context.restore()
+            
+        } else {
+            context.drawImage(this.texture, this.x, this.y, this.w, this.h)
+        }
+
     }
     move(x, keyStatus) {
+        // flipX控制是否水平翻转
+        this.flipX = (x < 0)
         this.x += x
         // log('keyStatus', keyStatus)
         if(keyStatus == 'down') {
@@ -58,7 +79,7 @@ class GuaAnimation {
         }
     }
     changeAnimation(name) {
-
         this.animationName = name
     }
+
 }

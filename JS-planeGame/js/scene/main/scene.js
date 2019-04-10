@@ -13,19 +13,20 @@ class Scene extends GuaScene {
         this.yun0 = new Yun(this.game)
         this.addElement(this.yun0)
 
+        // 添加玩家飞机
+        this.player = new Player(this.game)
+        this.addElement(this.player)
+
         // 批量添加敌机
         this.NumberOfEnemies = 5
         this.enemies()
 
-        // 添加玩家飞机
-        this.player = new Player(this.game)
-        this.addElement(this.player)
     }
     enemies() {
         // 用于添加所有敌机
         var es = []
         for (let i = 0; i < this.NumberOfEnemies; i++) {
-            var e = new Enemy(this.game)            
+            var e = new Enemy(this.game, this.player)            
             this.addElement(e)
             es.push(e)
         }

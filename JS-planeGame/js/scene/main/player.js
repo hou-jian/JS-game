@@ -11,8 +11,10 @@ class Missile extends GuaImage {
 class Player extends GuaImage {
     constructor(game) {
         super(game, 'player')
+        // 英雄默认位置
         this.x = 100
         this.y = 200
+        
         this.speed = config.player_speed
         this.cooldown = config.player_cooldown
 
@@ -51,14 +53,17 @@ class Player extends GuaImage {
         this.y += this.speed
     }
     fire() {
+        // cooldown子弹冷却时间
         if(this.cooldown <= 1) {
             this.cooldown = config.player_cooldown
-            var x = this.x + this.w / 2
+
+            // 子弹
             var m = new Missile(this.game, 'missile1')
-            m.x = x
-            m.y = this.y
+            // 算出子弹的初始坐标
+            m.x = this.x + (this.w / 2) - (m.w / 2)
+            m.y = this.y - m.h
+            // 添加到页面中(这里的scene是在gua_scene里挂上的)
             this.scene.addElement(m)
         }
-
     }
 }
