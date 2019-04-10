@@ -2,7 +2,7 @@ class Enemy extends GuaImage {
     constructor(game, player) {
         super(game, 'enemy' + rnd(1, 5))
         this.player = player
-        
+
         this.setup()
     }
 
@@ -14,7 +14,7 @@ class Enemy extends GuaImage {
 
     update() {
         // log('player中的子弹', this.player.missiles)
-        
+
         // 移动敌机
         this.y += this.speed
         if(this.y > this.canvasH) {
@@ -22,13 +22,16 @@ class Enemy extends GuaImage {
             this.resetParameters()
         }
         // 检查子弹与飞机矩形碰撞，重置敌机参数参数
-        
+
         var ms = this.player.missiles
         if(ms.length > 0) {
             // log('this.player.missiles', this.player.missiles)
-            for (let i = 0; i < ms.length; i++) {
+            for(let i = 0; i < ms.length; i++) {
                 var a = this.rectCollisionDetection(ms[i])
                 if(a) {
+                    // 生成爆炸特效
+                    var p = new GuaParticleSystem(this.game, ms[i].x, ms[i].y)
+                    this.scene.addElement(p)
                     ms[i].kill()
                     ms.splice(i, 1)
                     this.resetParameters()
@@ -36,7 +39,7 @@ class Enemy extends GuaImage {
                 }
             }
         }
-        
+
         // var a = this.rectCollisionDetection(this.player)
         // log(this.missile)
         // this.missileY += this.missile.speed
@@ -50,7 +53,7 @@ class Enemy extends GuaImage {
     }
     rectCollisionDetection = function(missile) {
 
-        return this.x < missile.x + missile.w  &&
+        return this.x < missile.x + missile.w &&
             this.x + this.w > missile.x &&
             this.y < missile.y + missile.h &&
             this.h + this.y > missile.y

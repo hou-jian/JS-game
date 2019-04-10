@@ -10,7 +10,7 @@ class GuaLabel {
         this.game.context.fillRect(0, 0, this.canvasW, this.canvasH)
         
 
-        // 绘制文本
+        // // 绘制文本
         // this.game.context.fillText(this.text, 100, 150)
     }
     update() {

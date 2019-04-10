@@ -3,7 +3,7 @@
 var config = {
     fps: 60,
     player_speed: 8,
-    player_cooldown: 5,
+    player_cooldown: 10,
     missile_speed: 5,
 }
 
