@@ -5,6 +5,13 @@ class Missile extends GuaImage {
     }
     update() {
         this.y -= this.speed
+        // 子弹超出范围删除自身
+        if(this.y <= 0) {
+            this.kill()
+        }
+    }
+    kill() {
+        this.scene.removeThing(this)
     }
 }
 
@@ -14,9 +21,12 @@ class Player extends GuaImage {
         // 英雄默认位置
         this.x = 100
         this.y = 200
-        
+
         this.speed = config.player_speed
         this.cooldown = config.player_cooldown
+
+        // 存放子弹类
+        this.missiles = []
 
     }
     update(g) {
@@ -39,6 +49,17 @@ class Player extends GuaImage {
         g.registerAction('j', () => {
             this.fire()
         })
+
+        // 子弹超出边界删除
+        this.removeMissile()
+    }
+    removeMissile() {
+        for (let i = 0; i < this.missiles.length; i++) {
+            var e = this.missiles[i]
+            if(e.y <= 0) {
+                this.missiles.splice(i, 1)
+            }
+        }
     }
     moveLeft() {
         this.x -= this.speed
@@ -64,6 +85,9 @@ class Player extends GuaImage {
             m.y = this.y - m.h
             // 添加到页面中(这里的scene是在gua_scene里挂上的)
             this.scene.addElement(m)
+
+            // 把子弹类添加给子弹数组(用于和敌机做矩形碰撞)
+            this.missiles.push(m)
         }
     }
 }
