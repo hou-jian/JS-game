@@ -23,6 +23,9 @@ class GuaScene {
  
     update() {
         // log('gua', this.elements)
+        if(this.game.pause) {
+            return
+        }
         // 批量更新数据(更新的数据由自身决定)
         for(var e of this.elements) {
             e.update(this.game)

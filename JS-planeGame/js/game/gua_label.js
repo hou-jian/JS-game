@@ -11,7 +11,8 @@ class GuaLabel {
         
 
         // // 绘制文本
-        // this.game.context.fillText(this.text, 100, 150)
+        this.game.context.fillStyle = '#000'
+        this.game.context.fillText(this.text, 200, 350)
     }
     update() {
 

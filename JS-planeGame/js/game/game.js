@@ -1,6 +1,7 @@
 class Game {
     constructor(images, runCallback) {
 
+        this.pause = false
         this.images = images
         this.runCallback = runCallback
         this.scene = null
@@ -57,7 +58,6 @@ class Game {
 
     // - 让传入的按键key值，指向回调函数。并保存在actions对象里
     registerAction(key, callback) {
-
         this.actions[key] = callback
     }
 
@@ -93,6 +93,7 @@ class Game {
     // 根据名字返回图片
     textureByName(name) {
         var img = this.images[name]
+        // log(img, name)
         return img
     }
     // 获取场景，并执行

@@ -13,16 +13,20 @@ class Enemy extends GuaImage {
     }
 
     update() {
-        // log('player中的子弹', this.player.missiles)
-
-        // 移动敌机
+        // 敌机移动
         this.y += this.speed
         if(this.y > this.canvasH) {
             // 重置并随机敌机参数
             this.resetParameters()
         }
-        // 检查子弹与飞机矩形碰撞，重置敌机参数参数
 
+        // 子弹与敌机碰撞检查
+        this.missileAndEnemy_Detection()
+
+        // 英雄机与敌机碰撞，游戏结束
+        this.playerAndEnemy_Detection()
+    }
+    missileAndEnemy_Detection() {
         var ms = this.player.missiles
         if(ms.length > 0) {
             // log('this.player.missiles', this.player.missiles)
@@ -39,24 +43,33 @@ class Enemy extends GuaImage {
                 }
             }
         }
-
-        // var a = this.rectCollisionDetection(this.player)
-        // log(this.missile)
-        // this.missileY += this.missile.speed
+    }
+    playerAndEnemy_Detection() {
+        var a = this.rectCollisionDetection(this.player)
+        if(a) {
+            // log('撞到了')
+            // 添加英雄机爆炸动画
+            var animation = new GuaAnimation(this.game, 'explode', 9, this.player.x, this.player.y)
+            this.scene.addElement(animation)
+            // 删除英雄机
+            this.player.scene.removeThing(this.player)
+          
+        }
     }
     resetParameters() {
+        // 重置敌机
         this.setup()
         var name = 'enemy' + rnd(1, 5)
         this.texture = this.game.textureByName(name)
         this.w = this.texture.width / this.scale
         this.h = this.texture.height / this.scale
     }
-    rectCollisionDetection = function(missile) {
-
-        return this.x < missile.x + missile.w &&
-            this.x + this.w > missile.x &&
-            this.y < missile.y + missile.h &&
-            this.h + this.y > missile.y
+    rectCollisionDetection = function(rect) {
+        // 矩形碰撞检查
+        return this.x < rect.x + rect.w &&
+            this.x + this.w > rect.x &&
+            this.y < rect.y + rect.h &&
+            this.h + this.y > rect.y
     }
 
 }
