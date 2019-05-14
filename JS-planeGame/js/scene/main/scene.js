@@ -25,14 +25,15 @@ class Scene extends GuaScene {
     enemies() {
         // 用于添加所有敌机
         var es = []
-        for (let i = 0; i < this.NumberOfEnemies; i++) {
-            var e = new Enemy(this.game, this.player)            
+        for(let i = 0; i < this.NumberOfEnemies; i++) {
+            var e = new Enemy(this.game, this.player)
             this.addElement(e)
             es.push(e)
         }
         this.enemies = es
     }
     update() {
+ 
         // 每帧更新父类的update()
         super.update()
     }

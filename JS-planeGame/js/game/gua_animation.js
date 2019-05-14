@@ -9,11 +9,18 @@ class GuaAnimation extends GuaImage {
         this.animations = {
             // idle: [],
             // run: []
-            explode: []
+            [animationName]: []
         }
         // 默认加载的动画图片名
         this.animationName = animationName
-
+        
+        // 添加到animations对象方便切换图片，以实现动画
+        for(let i = 0; i < animationNumber; i++) {
+            var name = animationName + (i + 1)
+            // log('name', name)
+            var t = game.textureByName(name)
+            this.animations[animationName].push(t)
+        }
         // for(let i = 0; i < 16; i++) {
         //     var name = `Idle${i + 1}`
         //     var t = game.textureByName(name)
@@ -24,19 +31,15 @@ class GuaAnimation extends GuaImage {
         //     var t = game.textureByName(name)
         //     this.animations['run'].push(t)
         // }
-        for(let i = 0; i < animationNumber; i++) {
-            var name = animationName + (i + 1)
-            // log('name', name)
-            var t = game.textureByName(name)
-            this.animations[animationName].push(t)
-        }
+
         // log('animations', this.animations)
         // this.texture = this.animations[this.animationName][0]
         // log('this.texture', this.texture)
         // this.w = this.texture.width
         // this.h = this.texture.height
 
-        this.flipX = false //控制水平翻转
+        //控制水平翻转，多个动画才需要用到
+        this.flipX = false 
 
     }
     update() {
@@ -47,7 +50,7 @@ class GuaAnimation extends GuaImage {
             this.count = 4
             this.index++
             if(this.index >= this.animations[this.animationName].length) {
-                this.game.pause = true
+                // this.game.pause = true
                 this.animations[this.animationName] = []
                 this.game.replaceScene(new SceneTitle(this.game))
                 return

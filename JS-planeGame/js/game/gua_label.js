@@ -6,13 +6,14 @@ class GuaLabel {
         this.canvasH = game.canvas.height
     }
     draw() {
-        this.game.context.fillStyle = '#79bce7'
-        this.game.context.fillRect(0, 0, this.canvasW, this.canvasH)
+        // this.game.context.fillStyle = '#79bce7'
+        // this.game.context.fillRect(0, 0, this.canvasW, this.canvasH)
         
 
         // // 绘制文本
+        this.game.context.font="40px Arial"
         this.game.context.fillStyle = '#000'
-        this.game.context.fillText(this.text, 200, 350)
+        this.game.context.fillText(this.text, 100, 350)
     }
     update() {
 

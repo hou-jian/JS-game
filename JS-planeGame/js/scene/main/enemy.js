@@ -8,7 +8,7 @@ class Enemy extends GuaImage {
 
     setup() {
         this.x = rnd(0, this.canvasW - 50)
-        this.y = -30
+        this.y = -100
         this.speed = rnd(1, 5)
     }
 
@@ -27,6 +27,7 @@ class Enemy extends GuaImage {
         this.playerAndEnemy_Detection()
     }
     missileAndEnemy_Detection() {
+        // 子弹与敌机碰撞检查
         var ms = this.player.missiles
         if(ms.length > 0) {
             // log('this.player.missiles', this.player.missiles)
@@ -45,6 +46,7 @@ class Enemy extends GuaImage {
         }
     }
     playerAndEnemy_Detection() {
+        // 英雄机和敌机碰撞检查
         var a = this.rectCollisionDetection(this.player)
         if(a) {
             // log('撞到了')
@@ -57,7 +59,7 @@ class Enemy extends GuaImage {
         }
     }
     resetParameters() {
-        // 重置敌机
+        // 重置敌机参数
         this.setup()
         var name = 'enemy' + rnd(1, 5)
         this.texture = this.game.textureByName(name)

@@ -17,22 +17,42 @@ class Missile extends GuaImage {
 
 class Player extends GuaImage {
     constructor(game) {
-        super(game, 'player')
-        // 英雄默认位置
+        super(game, 'player1')
+        // 英雄机默认位置
         this.x = 100
         this.y = 200
-
+        // 速度
         this.speed = config.player_speed
+        // 子弹冷却
         this.cooldown = config.player_cooldown
-
-        // 存放子弹类
+        // 存放子弹类(用于与敌机碰撞检查)
         this.missiles = []
 
+        // 多少帧切换一次英雄机图片
+        this.count = 8
+        this.players = []
+        for(let i = 1; i <= 3; i++) {
+            this.players.push(this.game.textureByName('player' + i))
+
+        }
+        this.index = 1
     }
     update(g) {
+        // 这是为了动态设置英雄机速度加的
         this.speed = config.player_speed
-
+        // 子弹冷却
         this.cooldown--
+
+        // log(this.index)
+
+        // 
+        this.count--
+        if(this.count <= 0) {
+            this.count = 8
+            this.texture = this.players[this.index]
+            this.index++
+            this.index = this.index % this.players.length
+        }
         // 移动飞机hero
         g.registerAction('a', () => {
             this.moveLeft()
@@ -50,11 +70,11 @@ class Player extends GuaImage {
             this.fire()
         })
 
-        // 子弹超出边界删除
+        // 子弹超出边界自己删除(删的是当前类中的子弹类)
         this.removeMissile()
     }
     removeMissile() {
-        for (let i = 0; i < this.missiles.length; i++) {
+        for(let i = 0; i < this.missiles.length; i++) {
             var e = this.missiles[i]
             if(e.y <= 0) {
                 this.missiles.splice(i, 1)
@@ -62,16 +82,36 @@ class Player extends GuaImage {
         }
     }
     moveLeft() {
+        // 限制边界
+        if(this.x <= 0) {
+            return
+        }
         this.x -= this.speed
+
+
     }
     moveRight() {
+        // 限制边界
+        if(this.x >= (this.game.canvas.width - this.w)) {
+            return
+        }
         this.x += this.speed
     }
     moveUp() {
+        // 限制边界
+        if(this.y <= 0) {
+            return
+        }
         this.y -= this.speed
     }
     moveDown() {
+         // 限制边界
+         if(this.y >= (this.game.canvas.height - this.h)) {
+            return
+        }
         this.y += this.speed
+
+       
     }
     fire() {
         // cooldown子弹冷却时间

@@ -1,24 +1,27 @@
 class Yun extends GuaImage {
     constructor(game) {
         // 随机云种类 
-        var n = rnd(1, 5)
-        super(game, 'yun' + n) 
+        super(game, 'yun' + rnd(1, 5)) 
         this.setup()
     }
-    setup() {
-        // log('texture', this.texture)
-        // 随机云
-        // this.texture = this.game.textureByName('yun' + rnd(1, 5)) 图片宽高有点问题先注释
-        this.x = rnd(0, this.canvasW - 50)
+    setup() {        
+        this.x = rnd(0, this.canvasW - this.w)
         this.y = -50
         this.speed = 1
     }
     update() {
         this.y += this.speed
+        // 过界重置参数
         if(this.y > this.canvasH) {
-            this.setup()
+            this.resetParameters()
         }
-        
+    }
+    resetParameters() {
+        this.setup()
+        var name = 'yun' + rnd(1, 5)
+        this.texture = this.game.textureByName(name)
+        this.w = this.texture.width / this.scale
+        this.h = this.texture.height / this.scale
     }
     
 }

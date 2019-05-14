@@ -1,7 +1,7 @@
 class Game {
     constructor(images, runCallback) {
 
-        this.pause = false
+        // this.pause = false
         this.images = images
         this.runCallback = runCallback
         this.scene = null
@@ -43,6 +43,7 @@ class Game {
     }
     
     update() {
+ 
         this.scene.update()
     }
 
