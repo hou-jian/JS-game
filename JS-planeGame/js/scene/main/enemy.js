@@ -33,14 +33,19 @@ class Enemy extends GuaImage {
             // log('this.player.missiles', this.player.missiles)
             for(let i = 0; i < ms.length; i++) {
                 var a = this.rectCollisionDetection(ms[i])
+                // a为true,即敌机与子弹相撞
                 if(a) {
                     // 生成爆炸特效
                     var p = new GuaParticleSystem(this.game, ms[i].x, ms[i].y)
                     this.scene.addElement(p)
+                    // 该发生碰撞的子弹类删除自身
                     ms[i].kill()
+                    // player(英雄机)类中保存的子弹类，同样需要删除
                     ms.splice(i, 1)
+                    // 重置敌机参数
                     this.resetParameters()
-
+                    // 分数+10
+                    this.game.score += 10
                 }
             }
         }
@@ -48,14 +53,15 @@ class Enemy extends GuaImage {
     playerAndEnemy_Detection() {
         // 英雄机和敌机碰撞检查
         var a = this.rectCollisionDetection(this.player)
+        // 撞到了a为true
         if(a) {
-            // log('撞到了')
+
             // 添加英雄机爆炸动画
             var animation = new GuaAnimation(this.game, 'explode', 9, this.player.x, this.player.y)
             this.scene.addElement(animation)
             // 删除英雄机
             this.player.scene.removeThing(this.player)
-          
+
         }
     }
     resetParameters() {

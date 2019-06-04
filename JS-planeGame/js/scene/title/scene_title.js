@@ -1,11 +1,12 @@
 class SceneTitle extends GuaScene {
     constructor(game) {
         super(game)
-
-        game.registerAction('k', function() {
+        // K的keyCode为75
+        game.registerAction('75', function() {
             var s = new Scene(game)
             game.replaceScene(s)
             game.pause = false
+            game.score = 0
         })
 
         this.setup()

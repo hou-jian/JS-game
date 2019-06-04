@@ -8,15 +8,16 @@ class Game {
         this.actions = {}
         this.keydowns = {}
         this.canvas = e('#game-canvas')
-
         this.context = this.canvas.getContext('2d')
+
+        this.score = 0
         
         // - 按键，按下移动true，抬起停止false
         bindEvent(window, 'keydown', (event) => {
-            this.keydowns[event.key] = 'down'
+            this.keydowns[event.keyCode] = 'down'
         })
         bindEvent(window, 'keyup', (event) => {
-            this.keydowns[event.key] = 'up'
+            this.keydowns[event.keyCode] = 'up'
         })
         this.init()
     }

@@ -21,6 +21,9 @@ class Scene extends GuaScene {
         this.NumberOfEnemies = 5
         this.enemies()
 
+        // 添加分数类
+        this.score = new Score(this.game)
+        this.addElement(this.score)
     }
     enemies() {
         // 用于添加所有敌机

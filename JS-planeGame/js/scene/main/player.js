@@ -1,3 +1,4 @@
+// 子弹类，它属于player类，为了方便写一起了
 class Missile extends GuaImage {
     constructor(game, name) {
         super(game, name)
@@ -15,6 +16,8 @@ class Missile extends GuaImage {
     }
 }
 
+
+
 class Player extends GuaImage {
     constructor(game) {
         super(game, 'player1')
@@ -28,14 +31,14 @@ class Player extends GuaImage {
         // 存放子弹类(用于与敌机碰撞检查)
         this.missiles = []
 
-        // 多少帧切换一次英雄机图片
+        // 多少帧切换一次英雄机图片(实现动画)
         this.count = 8
         this.players = []
         for(let i = 1; i <= 3; i++) {
             this.players.push(this.game.textureByName('player' + i))
 
         }
-        this.index = 1
+        this.index = 1 //控制动画帧
     }
     update(g) {
         // 这是为了动态设置英雄机速度加的
@@ -43,9 +46,7 @@ class Player extends GuaImage {
         // 子弹冷却
         this.cooldown--
 
-        // log(this.index)
-
-        // 
+        // 英雄机动画
         this.count--
         if(this.count <= 0) {
             this.count = 8
@@ -54,19 +55,24 @@ class Player extends GuaImage {
             this.index = this.index % this.players.length
         }
         // 移动飞机hero
-        g.registerAction('a', () => {
+        // a的 keyCode = 65
+        g.registerAction('65', () => {
             this.moveLeft()
         })
-        g.registerAction('d', () => {
+        // d
+        g.registerAction('68', () => {
             this.moveRight()
         })
-        g.registerAction('w', () => {
+        // w
+        g.registerAction('87', () => {
             this.moveUp()
         })
-        g.registerAction('s', () => {
+        // s
+        g.registerAction('83', () => {
             this.moveDown()
         })
-        g.registerAction('j', () => {
+        // j
+        g.registerAction('74', () => {
             this.fire()
         })
 
