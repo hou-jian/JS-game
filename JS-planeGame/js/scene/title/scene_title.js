@@ -21,7 +21,7 @@ class SceneTitle extends GuaScene {
         this.addElement(this.yun0)
 
         // 绘制标签
-        var label = new GuaLabel(this.game, '按k开始游戏')
+        var label = new GuaLabel(this.game, '按K开始游戏')
         this.addElement(label)
     }
 }

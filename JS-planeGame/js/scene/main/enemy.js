@@ -2,7 +2,7 @@ class Enemy extends GuaImage {
     constructor(game, player) {
         super(game, 'enemy' + rnd(1, 5))
         this.player = player
-
+        this.end = null
         this.setup()
     }
 
@@ -26,11 +26,10 @@ class Enemy extends GuaImage {
         // 英雄机与敌机碰撞，游戏结束
         this.playerAndEnemy_Detection()
     }
+    // 子弹与敌机碰撞检查
     missileAndEnemy_Detection() {
-        // 子弹与敌机碰撞检查
         var ms = this.player.missiles
         if(ms.length > 0) {
-            // log('this.player.missiles', this.player.missiles)
             for(let i = 0; i < ms.length; i++) {
                 var a = this.rectCollisionDetection(ms[i])
                 // a为true,即敌机与子弹相撞
@@ -50,30 +49,25 @@ class Enemy extends GuaImage {
             }
         }
     }
+    // 英雄机和敌机碰撞检查
     playerAndEnemy_Detection() {
-        // 英雄机和敌机碰撞检查
         var a = this.rectCollisionDetection(this.player)
         // 撞到了a为true
         if(a) {
-
-            // 添加英雄机爆炸动画
-            var animation = new GuaAnimation(this.game, 'explode', 9, this.player.x, this.player.y)
-            this.scene.addElement(animation)
-            // 删除英雄机
-            this.player.scene.removeThing(this.player)
-
+            var s = new SceneEnd(this.game, this.player.x, this.player.y)
+            this.game.replaceScene(s)
         }
     }
+    // 重置敌机参数
     resetParameters() {
-        // 重置敌机参数
         this.setup()
         var name = 'enemy' + rnd(1, 5)
         this.texture = this.game.textureByName(name)
         this.w = this.texture.width / this.scale
         this.h = this.texture.height / this.scale
     }
+    // 矩形碰撞检查
     rectCollisionDetection = function(rect) {
-        // 矩形碰撞检查
         return this.x < rect.x + rect.w &&
             this.x + this.w > rect.x &&
             this.y < rect.y + rect.h &&

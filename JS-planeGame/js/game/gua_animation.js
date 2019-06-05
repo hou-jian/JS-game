@@ -1,3 +1,4 @@
+// 这个类有很多测试复杂动画的余留代码, 很乱,留着代用.
 class GuaAnimation extends GuaImage {
     constructor(game, animationName, animationNumber, x, y) {
         super(game, animationName + 1)
@@ -13,7 +14,7 @@ class GuaAnimation extends GuaImage {
         }
         // 默认加载的动画图片名
         this.animationName = animationName
-        
+
         // 添加到animations对象方便切换图片，以实现动画
         for(let i = 0; i < animationNumber; i++) {
             var name = animationName + (i + 1)
@@ -39,20 +40,20 @@ class GuaAnimation extends GuaImage {
         // this.h = this.texture.height
 
         //控制水平翻转，多个动画才需要用到
-        this.flipX = false 
+        this.flipX = false
 
     }
     update() {
-        // log('animations', this.texture)
+
         // count控制多少帧切换一次状态
         this.count--
+
         if(this.count == 0) {
             this.count = 4
             this.index++
             if(this.index >= this.animations[this.animationName].length) {
-                // this.game.pause = true
                 this.animations[this.animationName] = []
-                this.game.replaceScene(new SceneTitle(this.game))
+                this.y = 1000
                 return
             }
             this.texture = this.animations[this.animationName][this.index]

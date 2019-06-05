@@ -43,6 +43,9 @@ var images = {
     explode8: 'assets/explode/s8.png',
     explode9: 'assets/explode/s9.png',
 
+    // 结束场景相关图片
+    end_bg: 'assets/game/end_bg.png',
+    retry: 'assets/game/retry_1.png',
 
     /**
      * 下面是测试动画用的图片，已移出，暂时保留
