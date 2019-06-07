@@ -5,8 +5,6 @@ class SceneTitle extends GuaScene {
         game.registerAction('75', function() {
             var s = new Scene(game)
             game.replaceScene(s)
-            game.pause = false
-            game.score = 0
         })
 
         this.setup()

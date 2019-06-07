@@ -50,6 +50,7 @@ class Enemy extends GuaImage {
         }
     }
     // 英雄机和敌机碰撞检查
+    // 撞了切换场景到scene_end.js
     playerAndEnemy_Detection() {
         var a = this.rectCollisionDetection(this.player)
         // 撞到了a为true
