@@ -9,11 +9,14 @@ class EndRetry extends GuaImage {
     update() {
         
     }
+    // 根据布尔值切换按钮图片
     toggleTexture(boole) {
         if(boole) {
             this.texture =  this.game.textureByName('retry2')
+            this.game.canvas.style.cursor = 'pointer'
         } else {
             this.texture =  this.game.textureByName('retry1')
+            this.game.canvas.style.cursor = 'default'
         }
     }
     

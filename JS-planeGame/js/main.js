@@ -21,6 +21,11 @@ var images = {
     enemy3: 'assets/enemy/enemy3.png',
     enemy4: 'assets/enemy/enemy4.png',
     enemy5: 'assets/enemy/enemy5.png',
+    enemy1_2: 'assets/enemy/enemy1_2.png',
+    enemy2_2: 'assets/enemy/enemy2_2.png',
+    enemy3_2: 'assets/enemy/enemy3_2.png',
+    enemy4_2: 'assets/enemy/enemy4_2.png',
+    enemy5_2: 'assets/enemy/enemy5_2.png',
     // 云
     yun0: 'assets/yun/Yun_0.png',
     yun1: 'assets/yun/Yun_1.png',
@@ -42,7 +47,9 @@ var images = {
     explode7: 'assets/explode/s7.png',
     explode8: 'assets/explode/s8.png',
     explode9: 'assets/explode/s9.png',
-
+    // 开始场景相关图片
+    play1: 'assets/game/play-1.png',
+    play2: 'assets/game/play-2.png',
     // 结束场景相关图片
     scorePanel: 'assets/game/scorePanel.png',
     retry1: 'assets/game/retry_1.png',

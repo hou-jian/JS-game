@@ -12,6 +12,7 @@ class Missile extends GuaImage {
         }
     }
     kill() {
+        // this.scene是在生成子弹类时挂上的(在gua_scene里)，以使用其方法
         this.scene.removeThing(this)
     }
 }
@@ -71,11 +72,14 @@ class Player extends GuaImage {
         g.registerAction('83', () => {
             this.moveDown()
         })
-        // j
+        // j发射子弹
         g.registerAction('74', () => {
             this.fire()
         })
-
+        // 预留自动发射子弹
+        if(false) {
+            this.fire()
+        }
         // 子弹超出边界自己删除(删的是当前类中的子弹类)
         this.removeMissile()
     }
@@ -111,13 +115,13 @@ class Player extends GuaImage {
         this.y -= this.speed
     }
     moveDown() {
-         // 限制边界
-         if(this.y >= (this.game.canvas.height - this.h)) {
+        // 限制边界
+        if(this.y >= (this.game.canvas.height - this.h)) {
             return
         }
         this.y += this.speed
 
-       
+
     }
     fire() {
         // cooldown子弹冷却时间

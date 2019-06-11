@@ -19,10 +19,10 @@ class Game {
         bindEvent(window, 'keyup', (event) => {
             this.keydowns[event.keyCode] = 'up'
         })
-        this.init()
+        this.setup()
     }
     // game入口！
-    init() {
+    setup() {
         // - 预先载入所有图片
         var loads = []
         var names = Object.keys(this.images)

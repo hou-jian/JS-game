@@ -27,13 +27,13 @@ class Scene extends GuaScene {
     }
     enemies() {
         // 用于添加所有敌机
-        var es = []
+        // var es = []
         for(let i = 0; i < this.NumberOfEnemies; i++) {
             var e = new Enemy(this.game, this.player)
             this.addElement(e)
-            es.push(e)
+            // es.push(e)
         }
-        this.enemies = es
+        // this.enemies = es
     }
     update() {
  

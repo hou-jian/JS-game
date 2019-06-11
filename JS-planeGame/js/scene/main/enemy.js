@@ -10,9 +10,23 @@ class Enemy extends GuaImage {
         this.x = rnd(0, this.canvasW - 50)
         this.y = -100
         this.speed = rnd(1, 5)
+        // 多少帧切换一次图片(实现动画)
+        this.count = 15
+        this.index = 1 //图片切换下标
+        // 保存用于切换图片，实现动画
+        this.enemys = []
+        this.enemys.push(this.game.textureByName(this.name))
+        this.enemys.push(this.game.textureByName(this.name + '_2'))
     }
 
     update() {
+        // 控制多少帧切换一次图片(实现动画)
+        this.count--
+        if(this.count <= 0) {
+            this.count = 15
+            this.texture = this.enemys[this.index]
+            this.index = (this.index + 1) % this.enemys.length
+        }
         // 敌机移动
         this.y += this.speed
         if(this.y > this.canvasH) {
@@ -39,9 +53,9 @@ class Enemy extends GuaImage {
                     this.scene.addElement(p)
                     // 该发生碰撞的子弹类删除自身
                     ms[i].kill()
-                    // player(英雄机)类中保存的子弹类，同样需要删除
+                    // player(英雄机)类中保存的子弹类(用于检查碰撞)，同样需要删除
                     ms.splice(i, 1)
-                    // 重置敌机参数
+                    // 重置参数
                     this.resetParameters()
                     // 分数+10
                     this.game.score += 10
@@ -59,14 +73,16 @@ class Enemy extends GuaImage {
             this.game.replaceScene(s)
         }
     }
-    // 重置敌机参数
+    // 重置参数
     resetParameters() {
-        this.setup()
-        var name = 'enemy' + rnd(1, 5)
-        this.texture = this.game.textureByName(name)
-        this.w = this.texture.width / this.scale
-        this.h = this.texture.height / this.scale
+        // 添加一个新敌机类
+        var e = new Enemy(this.game, this.player)
+        // this.scene是在生成敌机类时挂上的(在gua_scene里)，以使用其方法
+        this.scene.addElement(e)
+        // 删除当前类自己
+        this.scene.removeThing(this)
     }
+
     // 矩形碰撞检查
     rectCollisionDetection = function(rect) {
         return this.x < rect.x + rect.w &&

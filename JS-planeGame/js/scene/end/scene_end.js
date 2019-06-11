@@ -14,6 +14,10 @@ class SceneEnd extends GuaScene {
         // addElement方法在父类里
         this.addElement(this.bg)
 
+        // -英雄机爆炸动画
+        this.planeAnimation = new GuaAnimation(this.game, 'explode', 9, this.playerX, this.playerY)
+        this.addElement(this.planeAnimation)
+        
         // -分数面板
         this.scorePanel = new ScorePanel(this.game)
         this.addElement(this.scorePanel)
@@ -21,10 +25,6 @@ class SceneEnd extends GuaScene {
         // -重玩按钮
         this.endRetry = new EndRetry(this.game, this.scorePanel.y)
         this.addElement(this.endRetry)
-
-        // -英雄机爆炸动画
-        this.planeAnimation = new GuaAnimation(this.game, 'explode', 9, this.playerX, this.playerY)
-        this.addElement(this.planeAnimation)
 
         var canvas = this.game.canvas
         // -光标移入移出重玩按钮，切换图片
@@ -81,6 +81,7 @@ class SceneEnd extends GuaScene {
                 canvas.removeEventListener('mousemove', this.mousemoveFn)
                 // 重置参数
                 this.game.score = 0
+                canvas.style.cursor = 'default'
                 // 切换场景到scene
                 var s = new Scene(this.game)
                 this.game.replaceScene(s)

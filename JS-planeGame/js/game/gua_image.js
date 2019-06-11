@@ -1,6 +1,7 @@
 class GuaImage {
     constructor(game, name) {
         this.game = game
+        this.name = name
         this.texture = game.textureByName(name)
         this.x = 0
         this.y = 0
@@ -13,6 +14,7 @@ class GuaImage {
     }
 
     draw() {
+        
         // game类中的方法，用于绘制图片
         this.game.drawImage(this)
     }

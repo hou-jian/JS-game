@@ -5,7 +5,7 @@ class GuaScene {
         this.elements = []
     }
     addElement(thing) {
-        // 这个scene属性是game类所需的
+        // 这个scene属性是各个thing类里可能需要使用到的
         thing.scene = this
         this.elements.push(thing)
     }
