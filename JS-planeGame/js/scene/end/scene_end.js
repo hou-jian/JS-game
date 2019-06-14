@@ -41,7 +41,7 @@ class SceneEnd extends GuaScene {
         // throttle为节流函数，在game/assist.js里
         // 在点击重玩按钮切换场景时需要解绑，所以这里绑定在this上
         this.mousemoveFn = throttle((event) => {
-            // log('mousemove')
+            // log('mousemove2')
             // 当前光标坐标
             var x = event.offsetX
             var y = event.offsetY

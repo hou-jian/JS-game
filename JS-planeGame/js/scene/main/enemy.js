@@ -1,6 +1,6 @@
 class Enemy extends GuaImage {
     constructor(game, player) {
-        super(game, 'enemy' + rnd(1, 5))
+        super(game, 'enemy' + rnd(1, 6))
         this.player = player
         this.end = null
         this.setup()
@@ -11,7 +11,7 @@ class Enemy extends GuaImage {
         this.y = -100
         this.speed = rnd(1, 5)
         // 多少帧切换一次图片(实现动画)
-        this.count = 15
+        this.count = 8
         this.index = 1 //图片切换下标
         // 保存用于切换图片，实现动画
         this.enemys = []
@@ -23,7 +23,7 @@ class Enemy extends GuaImage {
         // 控制多少帧切换一次图片(实现动画)
         this.count--
         if(this.count <= 0) {
-            this.count = 15
+            this.count = 8
             this.texture = this.enemys[this.index]
             this.index = (this.index + 1) % this.enemys.length
         }
