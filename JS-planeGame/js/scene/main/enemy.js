@@ -9,7 +9,7 @@ class Enemy extends GuaImage {
     setup() {
         this.x = rnd(0, this.canvasW - 50)
         this.y = -100
-        this.speed = rnd(1, 5)
+        this.speed = rnd(2, 6)
         // 多少帧切换一次图片(实现动画)
         this.count = 8
         this.index = 1 //图片切换下标
@@ -20,6 +20,7 @@ class Enemy extends GuaImage {
     }
 
     update() {
+       
         // 控制多少帧切换一次图片(实现动画)
         this.count--
         if(this.count <= 0) {

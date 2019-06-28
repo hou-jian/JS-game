@@ -6,17 +6,22 @@ class SceneTitle extends GuaScene {
             var s = new Scene(game)
             game.replaceScene(s)
         })
-
         this.setup()
+       
     }
     setup() {
+
         // 添加背景
         this.bg = new Bg(this.game)
         this.addElement(this.bg)
 
-        // 添加云
-        this.yun0 = new Yun(this.game)
-        this.addElement(this.yun0)
+        // 批量添加云
+        for (var i = 0; i < 2; i++) {
+            // 云的y坐标
+            let y = -80 + (-200 * i)
+            var yun = new Yun(this.game, y)
+            this.addElement(yun)
+        }
 
         // // 绘制标签
         // var label = new GuaLabel(this.game, '按K开始游戏')
@@ -30,6 +35,7 @@ class SceneTitle extends GuaScene {
         this.mousemoveToggleTexture(canvas)
         this.clickSwitchoverScene(canvas)
     }
+ 
     // 光标移入移出开始按钮，切换图片
     mousemoveToggleTexture(canvas) {
         // throttle为节流函数，在game/assist.js里
@@ -70,13 +76,13 @@ class SceneTitle extends GuaScene {
             // 检查光标是否点中重玩按钮
             var b = this.blockCheck(x, y, retry)
             if(b) {
-                // 解绑canva上的事件
-                canvas.removeEventListener('click', clickFn)
-                canvas.removeEventListener('mousemove', this.mousemoveFn)
-                canvas.style.cursor = 'default'
                 // 切换场景到scene
                 var s = new Scene(this.game)
                 this.game.replaceScene(s)
+                 // 解绑canva上的事件
+                 canvas.removeEventListener('click', clickFn)
+                 canvas.removeEventListener('mousemove', this.mousemoveFn)
+                 canvas.style.cursor = 'default'
             }
         }
         canvas.addEventListener('click', clickFn)
@@ -87,4 +93,5 @@ class SceneTitle extends GuaScene {
         var yIn = y >= o.y && y <= o.y + o.h
         return xIn && yIn
     }
+
 }

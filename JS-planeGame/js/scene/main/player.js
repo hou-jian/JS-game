@@ -23,6 +23,7 @@ class Player extends GuaImage {
     constructor(game) {
         super(game, 'player1')
         this.setup()
+        
     }
     setup() {
         // 英雄机默认位置
@@ -78,11 +79,10 @@ class Player extends GuaImage {
     touchMod(canvas) {
         // 这里的计算量不大，为了顺畅没有用节流函数(可能会出现问题，待测试)
         canvas.addEventListener('mousemove', (event) => {
-
+        
             // 当前光标坐标
             var x = event.offsetX
             var y = event.offsetY
-
             // 鼠标按住，才执行
             if(this.mouseDownOrUp) {
                 // 只算一次坐标偏移值

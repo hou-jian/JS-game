@@ -9,16 +9,19 @@ class Scene extends GuaScene {
         // 该方法在GuaScene父类里
         this.addElement(this.bg)
 
-        // 添加云
-        this.yun0 = new Yun(this.game)
-        this.addElement(this.yun0)
+        // 批量添加云
+        for(var i = 0; i < 3; i++) {
+            let y = -80 + (-300 * i)
+            var yun = new Yun(this.game, y)
+            this.addElement(yun)
+        }
 
         // 添加玩家飞机
         this.player = new Player(this.game)
         this.addElement(this.player)
 
         // 批量添加敌机
-        this.NumberOfEnemies = 5
+        this.NumberOfEnemies = 10
         this.enemies()
 
         // 添加分数类
@@ -36,7 +39,7 @@ class Scene extends GuaScene {
         // this.enemies = es
     }
     update() {
- 
+
         // 每帧更新父类的update()
         super.update()
     }

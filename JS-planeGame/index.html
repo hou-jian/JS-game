@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打飞机</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            box-sizing: border-box;
+            width: 100%;
+
+        }
+
+        #title {
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #asild {
+            padding: 10px 5px;
+            width: 500px;
+            text-align: center;
+            margin: 20px auto;
+            border: dashed 1px pink;
+            border-radius: 5px;
+        }
+
+
+        #game-canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 0 auto;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="title">原生JS小游戏-打飞机</h1>
+    <canvas id="game-canvas" width="450" height="800"></canvas>
+    <aside id="asild">
+        <div id="help">
+            <div class="help-handle">
+                <h2>操作方式(可选)</h2>
+                <p>
+                    一、键盘控制：WASD控制方向，J发射子弹，K开始游戏
+                    <br>
+                    二、鼠标在画布内按住滑动即可
+                </p>
+            </div>
+        </div>
+        <div id="slide" class="textHolder">
+            <h2>滑条控制参数</h2>
+            <div>
+                <label>
+                    fps:<span class="gua-label"></span>
+                    <input class="auto-slider" type="range" value="60" max="60" data-value="config.fps">
+                </label>
+            </div>
+            <div>
+                <label>
+                    飞机速度：<span class="gua-label"></span>
+                    <input class="auto-slider" type="range" value="8" max="30" data-value="config.player_speed">
+                </label>
+            </div>
+            <div>
+                <label>
+                    子弹速度：<span class="gua-label"></span>
+                    <input class="auto-slider" type="range" value="5" max="30" data-value="config.missile_speed">
+                </label>
+            </div>
+            <div>
+                <label>
+                    子弹冷却：<span class="gua-label"></span>
+                    <input class="auto-slider" type="range" value="10" max="15" data-value="config.player_cooldown">
+                </label>
+            </div>
+        </div>
+        <div id="ps">
+            <strong>注意！！！素材来自互联网，请勿用于商业用途</strong>
+            <br>
+            <strong>仅支持桌面端，移动端没绑定touch事件无法操作，页面也没适配</strong>
+        </div>
+    </aside>
+
+
+
+    <!-- 辅助函数 -->
+    <script src="js/game/assist.js"></script>
+
+    <!-- game相关文件 -->
+    <script src="js/game/game.js"></script>
+    <script src="js/game/gua_scene.js"></script>
+    <script src="js/game/gua_image.js"></script>
+    <script src="js/game/gua_label.js"></script>
+    <script src="js/game/gua_particle_system.js"></script>
+    <script src="js/game/gua_animation.js"></script>
+
+    <!-- 场景相关文件 -->
+    <script src="js/scene/main/player.js"></script>
+    <script src="js/scene/main/bg.js"></script>
+    <script src="js/scene/main/yun.js"></script>
+    <script src="js/scene/main/enemy.js"></script>
+    <script src="js/scene/main/score.js"></script>
+    <script src="js/scene/main/scene.js"></script>
+
+    <!-- 结束/标题场景 -->
+    <script src="js/scene/end/scene_end.js"></script>
+    <script src="js/scene/end/scorePanel.js"></script>
+    <script src="js/scene/end/endRetry.js"></script>
+    <script src="js/scene/title/scene_title.js"></script>
+    <script src="js/scene/title/playButton.js"></script>
+
+    <!-- 入口 -->
+    <script src="js/main.js"></script>
+    <script>
+        var el = document.querySelector('#asild')
+        window.addEventListener('scroll', function() {
+            var viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+            var offsetTop = el.offsetTop
+            var scrollTop = document.documentElement.scrollTop
+            if((offsetTop - scrollTop) <= viewPortHeight + 100) {
+                // log('???', offsetTop, scrollTop, viewPortHeight)
+                el.classList.add('tada')
+            }
+        })
+    </script>
+</body>
+
+</html>

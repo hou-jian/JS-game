@@ -3,8 +3,8 @@
 var config = {
     fps: 60,
     player_speed: 8,
-    player_cooldown: 10,
-    missile_speed: 5,
+    player_cooldown: 5,
+    missile_speed: 15,
 }
 
 // 需要载入的图片名称
@@ -102,13 +102,11 @@ var images = {
 
 
 var __main = function() {
-
     // 通过回调函数的方式,保证资源加载完毕后，再开始运行
     new Game(images, function(g) {
         // 加载场景
         // var s = new Scene(g)
         var s = new SceneTitle(g)
-
         // 传入场景，开始执行
         g.runWithScene(s)
         debugOptions(g)
