@@ -42,7 +42,7 @@ var Scene = function(game) {
         game.context.fillText('分数: ' + score, 10, 50)
     }
 
-    s.updata = function() {
+    s.update = function() {
         // 暂停小球
         if(paused) {
             return
